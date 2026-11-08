@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: machine-failure
+spec:
+  type: ClusterIP
+  selector:
+    app: machine-failure
+  ports:
+    - port: 80
+      targetPort: 9696

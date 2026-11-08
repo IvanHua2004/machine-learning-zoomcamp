@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machine-failure
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: machine-failure
+  template:
+    metadata:
+      labels:
+        app: machine-failure
+    spec:
+      containers:
+        - name: machine-failure
+          image: machine-failure:v1
+          imagePullPolicy: IfNotPresent   # image is loaded into kind, not pulled
+          ports:
+            - containerPort: 9696
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9696
+            initialDelaySeconds: 3
+            periodSeconds: 5

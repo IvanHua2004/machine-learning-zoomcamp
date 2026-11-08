@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+.env
+.DS_Store
+# model.bin is small; commit it if you want reviewers to skip training.
+# model.bin
